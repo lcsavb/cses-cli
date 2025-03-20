@@ -92,7 +92,7 @@ chmod +x downloader.py
 ```
 This allows you to run it as:
 ```sh
-./downloader.py -t 1234 -f my_tests -u my_user -p my_pass
+./downloader.py -t 1234 -f task_folder -u my_user -p my_pass
 ```
 
 ---
@@ -101,22 +101,22 @@ This allows you to run it as:
 After setting up the environment, you can run the script using:
 
 ```sh
-python downloader.py -t <task_number> -f <directory_name> -u <username> -p <password>
+python downloader.py -t <task_number> -f <task_folder> -u <username> -p <password>
 ```
 
 ### **Example:**
 ```sh
-python downloader.py -t 1234 -f my_tests -u my_user -p my_pass
+python downloader.py -t 1234 -f hanoi -u my_user -p my_pass
 ```
-- The script will ask for a **root directory** on the first run and save it.
-- Future runs will use the **saved root directory** automatically.
+- The script will ask for a **root CSES directory** on the first run and save it.
+- Future runs will use the **saved root CSES directory** automatically.
 
 ---
 
 ### **Override Root Directory (Optional)**
-If you need to **change the root directory**, use the `-r` flag:
+If you need to **change the root CSES directory**, use the `-r` flag:
 ```sh
-python downloader.py -t 1234 -r /home/user/cses_tests -f my_tests -u my_user -p my_pass
+python downloader.py -t 1234 -r /home/user/cses_root_folder -f my_tests -u my_user -p my_pass
 ```
 This will update the **root directory in `config.json`**.
 
@@ -139,3 +139,6 @@ The original version of this program was created during the *Software Engineerin
 - Kalle Luopajärvi
 - Roope Salmi
 - Anton Taleiko
+
+### CSES tests dowloader
+- Lucas Barros
