@@ -119,14 +119,50 @@ def run(task_number, root_directory, directory_name, username, password):
     if zip_content:
         extract_zip(zip_content, root_directory, directory_name)
 
+help_text = """
+CSES Test Case Downloader
+
+This script downloads test cases from the CSES problem set and extracts them into a specified directory.
+
+USAGE:
+    python downloader.py -t <task_number> -f <directory_name> -u <username> -p <password>
+
+OPTIONS:
+    -t, --task_number      The CSES problem task number (required).
+    -f, --directory_name   Task's subdirectory name e.g. hanoi (required).
+    -u, --username         Your CSES username (required).
+    -p, --password         Your CSES password (required).
+    -r, --root_directory   (Optional) Set the root CSES directory for downloads. If not set, the script will ask once and save it.
+
+EXAMPLES:
+    First time setup (asks for root directory):
+        python downloader.py -t 1234 -f my_tests -u my_user -p my_pass
+    
+    Automatically uses saved root directory:
+        python downloader.py -t 5678 -f another_test -u my_user -p my_pass
+    
+    Override the root directory:
+        python downloader.py -t 91011 -r /tmp/cses_tests -f my_tests -u my_user -p my_pass
+
+NOTES:
+    - The script saves the root directory in a config.json file in the same directory as the script.
+    - If -r is provided, the root directory is updated in config.json.
+"""
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Download and extract test cases from CSES")
-    parser.add_argument("-t", "--task_number", help="The CSES task number", required=True)
-    parser.add_argument("-f", "--directory_name", help="Task's subdirectory name e.g. hanoi", required=True)
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("-t", "--task_number", help="The CSES task number", required=False)
+    parser.add_argument("-f", "--directory_name", help="Task's subdirectory name e.g. hanoi", required=False)
     parser.add_argument("-u", "--username", help="Your CSES username")
     parser.add_argument("-p", "--password", help="Your CSES password")
     parser.add_argument("-r", "--root_directory", help="CSES root directory")
+    parser.add_argument("-h", "--help", action="store_true", help="Show this help message and exit")
+    
     args = parser.parse_args()
+    
+    if args.help or len(sys.argv) == 1:
+        print(help_text)
+        sys.exit(0)
     
     root_directory = get_root_directory(args.root_directory)
     username, password = get_credentials(args.username, args.password)
