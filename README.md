@@ -90,10 +90,7 @@ If you're on **Linux or macOS**, make the script executable:
 ```sh
 chmod +x downloader.py
 ```
-This allows you to run it as:
-```sh
-./downloader.py -t 1234 -f task_folder -u my_user -p my_pass
-```
+
 
 ---
 
@@ -101,12 +98,12 @@ This allows you to run it as:
 After setting up the environment, you can run the script using:
 
 ```sh
-python downloader.py -t <task_number> -f <task_folder> -u <username> -p <password>
+python downloader.py -t <task_number> -f <task_folder>
 ```
 
 ### **Example:**
 ```sh
-python downloader.py -t 1234 -f hanoi -u my_user -p my_pass
+python downloader.py -t 1234 -f hanoi
 ```
 - The script will ask for a **root CSES directory** on the first run and save it.
 - Future runs will use the **saved root CSES directory** automatically.
@@ -116,7 +113,7 @@ python downloader.py -t 1234 -f hanoi -u my_user -p my_pass
 ### **Override Root Directory (Optional)**
 If you need to **change the root CSES directory**, use the `-r` flag:
 ```sh
-python downloader.py -t 1234 -r /home/user/cses_root_folder -f my_tests -u my_user -p my_pass
+python downloader.py -t 1234 -r /home/user/cses_root_folder -f my_tests
 ```
 This will update the **root directory in `config.json`**.
 
